@@ -7,8 +7,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 
+import com.geek.dao.EasybuyAnnouncementDAO;
 import com.geek.dao.EasybuyNewsDAO;
 import com.geek.dao.EasybuyProductCategoryDAO;
+import com.geek.dao.EasybuyProductDAO;
 
 public class IndexService {
 	
@@ -30,7 +32,7 @@ public class IndexService {
 	 * 加载公告消息
 	 */
 	public static void loadAnnouncement(){
-		EasybuyNewsDAO ebn = new EasybuyNewsDAO();
+		EasybuyAnnouncementDAO ebn = new EasybuyAnnouncementDAO();
 		Session session  = ebn.getSession();
 		session.beginTransaction();
 		List list = ebn.findAll();
@@ -56,7 +58,13 @@ public class IndexService {
 	 * 加载今日特价
 	 */
 	public static void loadSalePrice(){
-		
+		EasybuyProductDAO ebp = new EasybuyProductDAO();
+		Session session = ebp.getSession();
+		session.beginTransaction();
+		List list = ebp.findAll();
+		HttpSession httpsession = ServletActionContext.getRequest().getSession();
+		httpsession.setAttribute("promotions", list);
+		System.out.println(list.size());
 	}
 	
 	
@@ -64,6 +72,11 @@ public class IndexService {
 	 * 加载热门商品
 	 */
 	public static void loadHotProduct(){
-		
+		EasybuyProductDAO ebp = new EasybuyProductDAO();
+		Session session = ebp.getSession();
+		session.beginTransaction();
+		List list = ebp.findAll();
+		HttpSession httpsession = ServletActionContext.getRequest().getSession();
+		httpsession.setAttribute("deeshahots", list);
 	}
 }

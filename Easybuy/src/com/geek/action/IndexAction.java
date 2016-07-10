@@ -11,6 +11,8 @@ public class IndexAction extends ActionSupport {
 		IndexService.loadNews();
 		IndexService.loadAnnouncement();
 		IndexService.loadClassify();
+		IndexService.loadSalePrice();
+		IndexService.loadHotProduct();
 		return "success";
 	}
 	
