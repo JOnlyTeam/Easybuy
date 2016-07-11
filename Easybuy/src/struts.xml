@@ -20,6 +20,9 @@
         <action name="toIndex" class="com.geek.action.IndexAction" >
         	<result name="success">/index.jsp</result>
         </action>
+        <action name="productView" class="com.geek.action.ProductAction" method="productInfo">
+        	<result name="success">/product-view.jsp</result>
+        </action>
     </package>  
     <!-- Add packages here -->  
 

@@ -89,7 +89,7 @@
 						<dl>
 							
 							<dt><a href="product-veiw.jsp" target="_blank"><img src="${pro.epFileName}"></a></dt>
-							<dd class="title"><a href="product-view.jsp" target="_blank">${pro.epName}</a></dd>
+							<dd class="title"><a href="productView.action?productId=${pro.epId}" target="_blank">${pro.epName}</a></dd>
 							<dd class="price">${pro.epPrice}</dd>
 						</dl>
 					</li>
@@ -101,7 +101,7 @@
 				<h4>最新公告</h4>
 				<ul>
 				<c:forEach var="anno" items="${annoList}" begin="1" end="7">
-          			<li><a href="news-view.html?id=${anno.eanId}" target="_blank">${anno.eanTitle}</a></li>
+          			<li><a href="news-view.jsp?id=${anno.eanId}" target="_blank">${anno.eanTitle}</a></li>
           		</c:forEach>
 				</ul>
 			</div>
@@ -110,7 +110,7 @@
 				<h4>新闻动态</h4>
 				<ul>
 				<c:forEach var="news" items="${newsList}" begin="1" end="7">
-          			<li><a href="news-view.html?id=${news.enId}" target="_blank">${news.enTitle}</a></li>
+          			<li><a href="news-view.jsp?id=${news.enId}" target="_blank">${news.enTitle}</a></li>
           		</c:forEach>
           		</ul>
 			</div>

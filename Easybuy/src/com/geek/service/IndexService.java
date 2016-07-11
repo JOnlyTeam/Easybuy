@@ -64,7 +64,7 @@ public class IndexService {
 		List list = ebp.findAll();
 		HttpSession httpsession = ServletActionContext.getRequest().getSession();
 		httpsession.setAttribute("promotions", list);
-		System.out.println(list.size());
+		//System.out.println(list.size());
 	}
 	
 	

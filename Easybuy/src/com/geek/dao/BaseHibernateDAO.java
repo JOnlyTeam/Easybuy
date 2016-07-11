@@ -17,4 +17,6 @@ public class BaseHibernateDAO implements IBaseHibernateDAO {
 		return ((SessionFactory)ac.getBean("sessionFactory")).openSession();
 	}
 	
+	
+	
 }
