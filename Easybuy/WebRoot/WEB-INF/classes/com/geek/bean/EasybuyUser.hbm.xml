@@ -8,7 +8,7 @@
     <class name="com.geek.bean.EasybuyUser" table="easybuy_user" catalog="easybuy">
         <id name="euUserId" type="java.lang.Integer">
             <column name="eu_user_id" />
-            <generator class="identity" />
+            <generator class="native" />
         </id>
         <property name="euUserName" type="java.lang.String">
             <column name="eu_user_name">

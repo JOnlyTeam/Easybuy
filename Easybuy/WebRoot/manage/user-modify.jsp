@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -54,40 +55,54 @@
 				<table class="form">
 					<tr>
 						<td class="field">用户名：</td>
-						<td><input type="text" class="text" name="user.euUserName" value="zhangsan" readonly="readonly" /></td>
+						<td><input type="text" class="text" name="user.euUserName" value=${fillUser.euSex} readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<td class="field">密码：</td>
-						<td><input type="text" class="text" name="user.euPassword" value="zhangsan" /></td>
+						<td><input type="text" class="text" name="user.euPassword" value=${fillUser.euSex} /></td>
 					</tr>
 					<tr>
-						<td class="field">性别：</td>
-						<td><input type="radio" name="user.euSex" value="1" checked="checked" />男 <input type="radio" name="user.euSex" value="2" />女</td>
+						<c:if test="${fillUser.euSex=='男'}">
+							<td class="field">性别：</td>
+							<td><input type="radio" name="user.euSex" value=1 checked="checked" />男 <input type="radio" name="user.euSex" value="2" />女</td>
+						</c:if>
+						<c:if test="${fillUser.euSex=='女'}">
+							<td class="field">性别：</td>
+							<td><input type="radio" name="user.euSex" value=1  />男 <input type="radio" name="user.euSex" value="2"  checked="checked" />女</td>
+						</c:if>
+						
 					</tr>
 					<tr>
 						<td class="field">生日：</td>
-						<td><input type="text" class="text" name="user.euBirthday"  /></td>
+						<td><input type="text" class="text" name="user.euBirthday"  value=${fillUser.euBirthday} /></td>
 						<td>格式:94/04/05</td>
 					</tr>
 					<tr>
 						<td class="field">手机号码：</td>
-						<td><input type="text" class="text" name="user.euMobile" value="13800000000" /></td>
+						<td><input type="text" class="text" name="user.euMobile" value=${fillUser.euMobile} /></td>
 					</tr>
 					<tr>
 						<td class="field">身份证号：</td>
-						<td><input type="text" class="text" name="user.euIdentityCode"  /></td>
+						<td><input type="text" class="text" name="user.euIdentityCode"  value=${fillUser.euIdentityCode}/></td>
 					</tr>
 					<tr>
 						<td class="field">邮箱：</td>
-						<td><input type="text" class="text" name="user.euEmail" /></td>
+						<td><input type="text" class="text" name="user.euEmail" value=${fillUser.euEmail}/></td>
 					</tr>
 					<tr>
 						<td class="field">送货地址：</td>
-						<td><input type="text" class="text" name="user.euAddress" value="高老庄" /></td>
+						<td><input type="text" class="text" name="user.euAddress" value=${fillUser.euAddress} /></td>
 					</tr>
 					<tr>
-						<td class="field">用户权限：</td>
-						<td><input type="radio" name="user.euStatus" value="1" />普通会员 <input type="radio" name="user.euStatus" value="2" />管理员</td>
+						<c:if test="${fillUser.euStatus==1}">
+							<td class="field">用户权限：</td>
+							<td><input type="radio" name="user.euStatus" value="1" checked="checked"/>普通会员 <input type="radio" name="user.euStatus" value="2" />管理员</td>
+						</c:if>
+						<c:if test="${fillUser.euStatus==2}">
+							<td class="field">用户权限：</td>
+							<td><input type="radio" name="user.euStatus" value="1" />普通会员 <input type="radio" name="user.euStatus" value="2" checked="checked"/>管理员</td>
+						</c:if>
+						
 					</tr>
 					<tr>
 						<td></td>

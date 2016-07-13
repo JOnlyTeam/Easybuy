@@ -1,5 +1,7 @@
 package com.geek.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
@@ -92,6 +94,28 @@ public class UserAction extends ActionSupport {
 	 */
 	public String deleteUser(){
 		userService.deleteUser(userId);
+		return "success";
+	}
+	
+	/**
+	 * 载入用户列表
+	 * @return
+	 */
+	public String userList(){
+		List list = userService.getUserList();
+		session = ServletActionContext.getRequest().getSession();
+		session.setAttribute("userList", list);
+		return "success";
+	}
+	
+	/**
+	 * 跳转至用户信息修改页面
+	 * @return
+	 */
+	public String makeUserFill(){
+		EasybuyUser user = userService.getEasybuyUser(userId);
+		session = ServletActionContext.getRequest().getSession();
+		session.setAttribute("fillUser", user);
 		return "success";
 	}
 	public String getUserName() {

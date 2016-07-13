@@ -84,6 +84,22 @@ public class UserService extends CommonService{
 		EasybuyUser user = dao.findById(userId);
 		dao.delete(user);
 	}
+	
+	/**
+	 * 获取用户列表
+	 * @return
+	 */
+	public List getUserList(){
+		return dao.findAll();
+	}
+	
+	/**
+	 * 返回特定用户
+	 * @return
+	 */
+	public EasybuyUser getEasybuyUser(int id){
+		return dao.findById(id);
+	}
 	public EasybuyUserDAO getDao() {
 		return dao;
 	}

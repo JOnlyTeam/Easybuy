@@ -32,7 +32,10 @@
         <action name="productByPage" class="com.geek.action.ProductAction" method="productByPage">
         	<result name="success">/product-list.jsp</result>
         </action>
-        <action name="createUser" class="com.geek.action.UserAction" method="createUser">
+     
+    </package>   
+    <package name="manage" namespace="/manage" extends="struts-default">
+   		<action name="createUser" class="com.geek.action.UserAction" method="createUser">
         	<result name="success">/manage/user-add.jsp</result>
         	<result name="error">/manage/user-add.jsp</result>
         </action>
@@ -43,6 +46,13 @@
         	<result name="success">/manage/user.jsp</result>
         </action>
         
+         <action name="userList" class="com.geek.action.UserAction" method="userList">
+        	<result name="success">/manage/user.jsp</result>
+        </action>
+        
+        <action name="makeUserFill" class="com.geek.action.UserAction" method="makeUserFill">
+        	<result name="success">/manage/user-modify.jsp</result>
+        </action>
     </package>  
     <!-- Add packages here -->  
 
