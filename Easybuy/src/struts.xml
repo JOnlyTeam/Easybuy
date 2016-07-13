@@ -26,8 +26,11 @@
         <action name="newsView" class="com.geek.action.MessageAction" method="newsView">
         	<result name="success">/news-view.jsp</result>
         </action>
-                <action name="annoView" class="com.geek.action.MessageAction" method="annoView">
+        <action name="annoView" class="com.geek.action.MessageAction" method="annoView">
         	<result name="success">/anno-view.jsp</result>
+        </action>
+        <action name="productByPage" class="com.geek.action.ProdcutAction" method="productByPage">
+        	<result name="success">/product-list.jsp</result>
         </action>
     </package>  
     <!-- Add packages here -->  

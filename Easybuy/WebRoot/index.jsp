@@ -62,7 +62,7 @@
 					</c:if>
 					<c:forEach var= "scat" items="${category}">
 						<c:if test="${scat.epcParentId==cat.epcId}">
-							<dd><a href="product-list.jsp">${scat.epcName}</a></dd>
+							<dd><a href="productByPage.action?pageNum=1&perpageNumber=2">${scat.epcName}</a></dd>
 						</c:if>
 					</c:forEach>	
 				</c:forEach>
