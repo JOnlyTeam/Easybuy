@@ -1,4 +1,7 @@
 ﻿<%@ page contentType="text/html;charset=utf-8" %>
+<%@ page import="java.util.*" %>
+<%@ page import="com.geek.bean.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -88,6 +91,34 @@
 				${product.epDescription}
 			</div>
 		</div>
+		<%
+			EasybuyProduct product = (EasybuyProduct)session.getAttribute("product");
+			Cookie[] cookies = request.getCookies();
+			List<Cookie> cookieList = new ArrayList<Cookie>();
+			Cookie tempCookie = null;
+			if(cookies!=null && cookies.length>0){
+				for(Cookie c:cookies){
+					String cookieName = c.getName();
+					if(cookieName.startsWith("LastLook_")){
+						cookieList.add(c);
+					}
+					
+					if(c.getValue().equals(product.getEpId())){
+						tempCookie = c;
+					}
+				}
+			}
+			if(cookieList.size() >= 5 && tempCookie == null){
+				tempCookie = cookieList.get(0);
+			}
+			if(tempCookie != null){
+				tempCookie.setMaxAge(0);
+				response.addCookie(tempCookie);
+			}
+			int id = product.getEpId();
+			Cookie cookie = new Cookie("LastLook_"+id, id+"");
+			response.addCookie(cookie);
+		%>
 	</div>
 	<div class="clear"></div>
 </div>

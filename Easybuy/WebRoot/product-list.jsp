@@ -1,7 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page contentType="text/html;charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <title>易买网 - 首页</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript" src="scripts/function.js"></script>
@@ -107,9 +107,9 @@
 			  <c:forEach var="product" items="${productForPage}">
 				<li>
 					<dl>
-						<dt><a href="product-veiw.jsp" target="_blank"><img src="${hot.epFileName}"></a></dt>
-						<dd class="title"><a href="productView.action?productId=${hot.epId}" target="_blank">${hot.epName}</a></dd>
-						<dd class="price">${hot.epPrice}</dd>
+						<dt><a href="productView.action?productId=${product.epId}" target="_blank"><img src="${product.epFileName}"></a></dt>
+						<dd class="title"><a href="productView.action?productId=${product.epId}" target="_blank">${product.epName}</a></dd>
+						<dd class="price">${product.epPrice}</dd>
 					</dl>
 				</li>
 			  </c:forEach>

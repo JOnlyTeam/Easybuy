@@ -1,4 +1,4 @@
-package com.geek.action;
+ package com.geek.action;
 
 import java.util.List;
 
@@ -32,6 +32,9 @@ public class IndexAction extends ActionSupport {
 		session.setAttribute("newsList", list);		
 		list = announcementService.getAnnouncementList();
 		session.setAttribute("annoList", list);
+		list = productService.getLastLookProduct();
+		//System.out.println("zuijinliulan"+list.size());
+		session.setAttribute("LastLook", list);
 		return "success";
 	}
 

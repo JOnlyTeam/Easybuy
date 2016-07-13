@@ -73,10 +73,10 @@
 		<div class="last-view">
 			<h2>最近浏览</h2>
 			<dl class="clearfix">
-				<dt><img src="images/product/0_tiny.gif" /></dt>
-				<dd><a href="product-view.jsp">法国德菲丝松露精品巧克力500g/盒</a></dd>
-				<dt><img src="images/product/0_tiny.gif" /></dt>
-				<dd><a href="product-view.jsp">法国德菲丝松露精品巧克力500g/盒</a></dd>
+				<c:forEach var="product" items="${LastLook}">
+					<dt><img src="${product.epFileName}" width="50" height="50"/></dt>
+					<dd><a href="productView.action?productId=${product.epId}">${product.epName}</a></dd>
+				</c:forEach>
 			</dl>
 		</div>
 	</div>
@@ -88,7 +88,7 @@
 					<li>
 						<dl>
 							
-							<dt><a href="product-veiw.jsp" target="_blank"><img src="${pro.epFileName}"></a></dt>
+							<dt><a href="productView.action?productId=${pro.epId}" target="_blank"><img src="${pro.epFileName}"></a></dt>
 							<dd class="title"><a href="productView.action?productId=${pro.epId}" target="_blank">${pro.epName}</a></dd>
 							<dd class="price">${pro.epPrice}</dd>
 						</dl>
@@ -123,7 +123,7 @@
 					<li>
 						<dl>
 							
-							<dt><a href="product-veiw.jsp" target="_blank"><img src="${hot.epFileName}"></a></dt>
+							<dt><a href="productView.action?productId=${hot.epId}" target="_blank"><img src="${hot.epFileName}"></a></dt>
 							<dd class="title"><a href="productView.action?productId=${hot.epId}" target="_blank">${hot.epName}</a></dd>
 							<dd class="price">${hot.epPrice}</dd>
 						</dl>

@@ -48,34 +48,53 @@
 		</div>
 	</div>
 	<div class="main">
-		<h2>用户管理</h2>
+		<h2>新增用户</h2>
 		<div class="manage">
-			<table class="list">
-				<tr>
-					<th>ID</th>
-					<th>姓名</th>
-					<th>性别</th>
-					<th>Email</th>
-					<th>手机</th>
-					<th>操作</th>
-				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td class="w1 c">张三丰</td>
-					<td class="w2 c">男</td>
-					<td>fengsan.zhang@prd.com</td>
-					<td class="w4 c">13888888888</td>
-					<td class="w1 c"><a href="user-modify.jsp">修改</a> <a href="javascript:Delete(1);">删除</a></td>
-				</tr>
-				<tr>
-					<td class="first w4 c">2</td>
-					<td class="w1 c">杨二郎</td>
-					<td class="w2 c">男</td>
-					<td>fengsan.zhang@prd.com</td>
-					<td class="w4 c">13888888888</td>
-					<td class="w1 c"><a href="user-modify.jsp">修改</a> <a href="javascript:Delete(1);">删除</a></td>
-				</tr>
-			</table>
+			<form action="createUser.action">
+				<table class="form">
+					<tr>
+						<td class="field">用户名：</td>
+						<td><input type="text" class="text" name="user.euUserName"  /></td>
+					</tr>
+					<tr>
+						<td class="field">密码：</td>
+						<td><input type="text" class="text" name="user.euPassword"  /></td>
+					</tr>
+					<tr>
+						<td class="field">性别：</td>
+						<td><input type="radio" name="user.euSex" value="1" />男 <input type="radio" name="user.euSex" value="2" />女</td>
+					</tr>
+					<tr>
+						<td class="field">生日：</td>
+						<td><input type="text" class="text" name="user.euBirthday"  /></td>
+						<td>格式:94/04/05</td>
+					</tr>
+					<tr>
+						<td class="field">身份证号：</td>
+						<td><input type="text" class="text" name="user.euIdentityCode"  /></td>
+					</tr>
+					<tr>
+						<td class="field">邮箱：</td>
+						<td><input type="text" class="text" name="user.euEmail" /></td>
+					</tr>
+					<tr>
+						<td class="field">手机号码：</td>
+						<td><input type="text" class="text" name="user.euMobile" /></td>
+					</tr>
+					<tr>
+						<td class="field">送货地址：</td>
+						<td><input type="text" class="text" name="user.euAddress"  /></td>
+					</tr>
+					<tr>
+						<td class="field">用户权限：</td>
+						<td><input type="radio" name="user.euStatus" value="1" />普通会员 <input type="radio" name="user.euStatus" value="2" />管理员</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><label class="ui-blue"><input type="submit" name="submit" value="确定" /></label></td>
+					</tr>
+				</table>
+			</form>
 		</div>
 	</div>
 	<div class="clear"></div>

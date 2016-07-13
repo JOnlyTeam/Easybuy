@@ -66,7 +66,24 @@ public class UserService extends CommonService{
 			return "登录成功";
 		}
 	}
-
+	
+	
+	/**
+	 * 后台更新用户
+	 * @return
+	 */
+	public void motifyUser(EasybuyUser user){
+		dao.attachDirty(user);
+	}
+	
+	/**
+	 * 后台删除用户
+	 * @return
+	 */
+	public void deleteUser(int userId){
+		EasybuyUser user = dao.findById(userId);
+		dao.delete(user);
+	}
 	public EasybuyUserDAO getDao() {
 		return dao;
 	}

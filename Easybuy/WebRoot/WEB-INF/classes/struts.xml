@@ -29,9 +29,20 @@
         <action name="annoView" class="com.geek.action.MessageAction" method="annoView">
         	<result name="success">/anno-view.jsp</result>
         </action>
-        <action name="productByPage" class="com.geek.action.ProdcutAction" method="productByPage">
+        <action name="productByPage" class="com.geek.action.ProductAction" method="productByPage">
         	<result name="success">/product-list.jsp</result>
         </action>
+        <action name="createUser" class="com.geek.action.UserAction" method="createUser">
+        	<result name="success">/manage/user-add.jsp</result>
+        	<result name="error">/manage/user-add.jsp</result>
+        </action>
+        <action name="motifyUser" class="com.geek.action.UserAction" method="motifyUser">
+        	<result name="success">/manage/user.jsp</result>
+        </action>
+        <action name="deleteUser" class="com.geek.action.UserAction" method="deleteUser">
+        	<result name="success">/manage/user.jsp</result>
+        </action>
+        
     </package>  
     <!-- Add packages here -->  
 

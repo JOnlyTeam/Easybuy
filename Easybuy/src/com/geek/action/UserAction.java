@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.geek.bean.EasybuyUser;
 import com.geek.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -11,6 +12,9 @@ public class UserAction extends ActionSupport {
 	
 	private HttpSession session;
 	
+	private EasybuyUser user;
+	
+	private int userId;
 	private String userName;
 	private String passWord;
 	private String rePassWord;
@@ -56,8 +60,40 @@ public class UserAction extends ActionSupport {
 		return "login";
 	}
 	
+	/**
+	 * 后台新增用户
+	 * @return
+	 */
+	public String createUser(){
+		session = ServletActionContext.getRequest().getSession();
+		if(userService.isExisted(user.getEuUserName())){
+			session.setAttribute("error", "用户已存在!");
+			return "error";
+		}
+		else{
+			userService.motifyUser(user);
+			return "success";
+		}
+			
+	}
 	
+	/**
+	 * 后台更新用户
+	 * @return
+	 */
+	public String updateUser(){
+		userService.motifyUser(user);
+		return "success";
+	}
 	
+	/**
+	 * 后台删除用户
+	 * @return
+	 */
+	public String deleteUser(){
+		userService.deleteUser(userId);
+		return "success";
+	}
 	public String getUserName() {
 		return userName;
 	}
@@ -95,5 +131,25 @@ public class UserAction extends ActionSupport {
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+
+	public EasybuyUser getUser() {
+		return user;
+	}
+
+
+	public void setUser(EasybuyUser user) {
+		this.user = user;
+	}
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 }

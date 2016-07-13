@@ -50,52 +50,44 @@
 	<div class="main">
 		<h2>修改用户</h2>
 		<div class="manage">
-			<form action="manage-result.jsp">
+			<form action="motifyUser.action">
 				<table class="form">
 					<tr>
 						<td class="field">用户名：</td>
-						<td><input type="text" class="text" name="userName" value="zhangsan" readonly="readonly" /></td>
-					</tr>
-					<tr>
-						<td class="field">姓名：</td>
-						<td><input type="text" class="text" name="name" value="张三" /></td>
+						<td><input type="text" class="text" name="user.euUserName" value="zhangsan" readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<td class="field">密码：</td>
-						<td><input type="text" class="text" name="passWord" value="zhangsan" /></td>
+						<td><input type="text" class="text" name="user.euPassword" value="zhangsan" /></td>
 					</tr>
 					<tr>
 						<td class="field">性别：</td>
-						<td><input type="radio" name="sex" value="1" checked="checked" />男 <input type="radio" name="sex" value="1" />女</td>
+						<td><input type="radio" name="user.euSex" value="1" checked="checked" />男 <input type="radio" name="user.euSex" value="2" />女</td>
 					</tr>
 					<tr>
-						<td class="field">出生日期：</td>
-						<td>
-							<select name="birthyear">
-								<option value="2000">2000</option>
-								<option value="1999" selected="selected">1999</option>
-							</select>年
-							<select name="birthmonth">
-								<option value="12">12</option>
-								<option value="11" selected="selected">11</option>
-							</select>月
-							<select name="birthday">
-								<option value="2">2</option>
-								<option value="1" selected="selected">1</option>
-							</select>日
-						</td>
+						<td class="field">生日：</td>
+						<td><input type="text" class="text" name="user.euBirthday"  /></td>
+						<td>格式:94/04/05</td>
 					</tr>
 					<tr>
 						<td class="field">手机号码：</td>
-						<td><input type="text" class="text" name="mobile" value="13800000000" /></td>
+						<td><input type="text" class="text" name="user.euMobile" value="13800000000" /></td>
+					</tr>
+					<tr>
+						<td class="field">身份证号：</td>
+						<td><input type="text" class="text" name="user.euIdentityCode"  /></td>
+					</tr>
+					<tr>
+						<td class="field">邮箱：</td>
+						<td><input type="text" class="text" name="user.euEmail" /></td>
 					</tr>
 					<tr>
 						<td class="field">送货地址：</td>
-						<td><input type="text" class="text" name="address" value="高老庄" /></td>
+						<td><input type="text" class="text" name="user.euAddress" value="高老庄" /></td>
 					</tr>
 					<tr>
-						<td class="field">头像：</td>
-						<td><input type="file" class="text" name="photo" /></td>
+						<td class="field">用户权限：</td>
+						<td><input type="radio" name="user.euStatus" value="1" />普通会员 <input type="radio" name="user.euStatus" value="2" />管理员</td>
 					</tr>
 					<tr>
 						<td></td>

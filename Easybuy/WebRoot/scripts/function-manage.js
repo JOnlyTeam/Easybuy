@@ -2,6 +2,6 @@
 function Delete(id)
 {
 	if(confirm("确定要删除吗？")) {
-		location.href = "user-delete.jsp?id=" + id;
+		location.href = "deleteUser.action?userId="+id;
 	}
 }
