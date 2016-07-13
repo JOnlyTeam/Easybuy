@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -46,6 +47,7 @@
 	<div class="shadow">
 		<em class="corner lb"></em>
 		<em class="corner rt"></em>
+		
 		<div class="box">
 			<h1>欢迎注册易买网</h1>
 			<ul class="steps clearfix">
@@ -68,11 +70,19 @@
 					</tr>
 					<tr>
 						<td class="field">验证码：</td>
-						<td><input class="text verycode" type="text" name="veryCode" onfocus="FocusItem(this)" onblur="CheckItem(this);" /><img id="veryCode" src="jcaptcha.jpg" /><span></span></td>
+						<td><input type="text" name="kaptcha" value="" /><img src="kaptcha.jpg" /></td>
+<!-- 						<td><input class="text verycode" type="text" name="veryCode" onfocus="FocusItem(this)" onblur="CheckItem(this);" /><img id="veryCode" src="jcaptcha.jpg" /><span></span></td> -->
 					</tr>
 					<tr>
 						<td></td>
-						<td><label class="ui-green"><input type="submit" name="submit" value="提交注册" /></label></td>
+						<td><label class="ui-green"><input type="submit" name="submit" value="提交注册" /></label> 
+							<c:if test="${not empty error}">
+								"${error}"
+								<%
+									session.removeAttribute("error");
+								%>
+							</c:if>
+						</td>
 					</tr>
 				</table>
 			</form>

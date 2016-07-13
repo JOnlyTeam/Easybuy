@@ -66,7 +66,14 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><label class="ui-green"><input type="submit" name="submit" value="立即登录" /></label></td>
+						<td><label class="ui-green"><input type="submit" name="submit" value="立即登录" /></label>
+							<c:if test="${not empty error}">
+								"${error}"
+								<%
+									session.removeAttribute("error");
+								%>
+							</c:if>
+						</td>
 					</tr>
 				</table>
 			</form>

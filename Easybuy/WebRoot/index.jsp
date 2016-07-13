@@ -56,7 +56,7 @@
 		<div class="box">
 			<h2>商品分类</h2>
 			<dl>
-				<c:forEach var="cat" items="${category}" begin="0" end="7">
+				<c:forEach var="cat" items="${category}">
 					<c:if test="${cat.epcParentId == 0}">
 						<dt>${cat.epcName}</dt>
 					</c:if>
@@ -84,7 +84,7 @@
 		<div class="price-off">
 			<h2>今日特价</h2>
 			<ul class="product clearfix">
-				<c:forEach var="pro" items="${promotions}" begin="0" end="7"> 
+				<c:forEach var="pro" items="${salePrices}"> 
 					<li>
 						<dl>
 							
@@ -100,8 +100,8 @@
 			<div class="news-list">
 				<h4>最新公告</h4>
 				<ul>
-				<c:forEach var="anno" items="${annoList}" begin="1" end="7">
-          			<li><a href="news-view.jsp?id=${anno.eanId}" target="_blank">${anno.eanTitle}</a></li>
+				<c:forEach var="anno" items="${annoList}" >
+          			<li><a href="annoView.action?annoId=${anno.eanId}" target="_blank">${anno.eanTitle}</a></li>
           		</c:forEach>
 				</ul>
 			</div>
@@ -109,8 +109,8 @@
 			<div class="news-list">
 				<h4>新闻动态</h4>
 				<ul>
-				<c:forEach var="news" items="${newsList}" begin="1" end="7">
-          			<li><a href="news-view.jsp?id=${news.enId}" target="_blank">${news.enTitle}</a></li>
+				<c:forEach var="news" items="${newsList}">
+          			<li><a href="newsView.action?newsId=${news.enId}" target="_blank">${news.enTitle}</a></li>
           		</c:forEach>
           		</ul>
 			</div>
@@ -119,12 +119,12 @@
 		<div class="hot">
 			<h2>热卖推荐</h2>
 			<ul class="product clearfix">
-				<c:forEach var="hot" items="${deeshahots}" begin="3" end="14"> 
+				<c:forEach var="hot" items="${hotSales}" > 
 					<li>
 						<dl>
 							
 							<dt><a href="product-veiw.jsp" target="_blank"><img src="${hot.epFileName}"></a></dt>
-							<dd class="title"><a href="product-view.jsp" target="_blank">${hot.epName}</a></dd>
+							<dd class="title"><a href="productView.action?productId=${hot.epId}" target="_blank">${hot.epName}</a></dd>
 							<dd class="price">${hot.epPrice}</dd>
 						</dl>
 					</li>

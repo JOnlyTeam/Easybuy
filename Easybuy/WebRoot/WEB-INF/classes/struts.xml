@@ -11,17 +11,23 @@
     <package name="default" namespace="/" extends="struts-default">  
         <action name="register" class="com.geek.action.UserAction" method="register">  
             <result name="success">/reg-result.jsp</result>  
-            <result name="error">/test.jsp</result>
+            <result name="register">/register.jsp</result>
         </action>  
         <action name="login" class="com.geek.action.UserAction" method="login">
-        	<result name="success">/reg-result.jsp</result>
-        	<result name="error">/test.jsp</result>
+        	<result name="success">/login-result.jsp</result>
+        	<result name="login">/login.jsp</result>
         </action>
-        <action name="toIndex" class="com.geek.action.IndexAction" >
+        <action name="toIndex" class="com.geek.action.IndexAction" method="loadIndex">
         	<result name="success">/index.jsp</result>
         </action>
-        <action name="productView" class="com.geek.action.ProductAction" method="productInfo">
+        <action name="productView" class="com.geek.action.ProductAction" method="productView">
         	<result name="success">/product-view.jsp</result>
+        </action>
+        <action name="newsView" class="com.geek.action.MessageAction" method="newsView">
+        	<result name="success">/news-view.jsp</result>
+        </action>
+                <action name="annoView" class="com.geek.action.MessageAction" method="annoView">
+        	<result name="success">/anno-view.jsp</result>
         </action>
     </package>  
     <!-- Add packages here -->  

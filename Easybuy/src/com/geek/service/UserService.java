@@ -2,28 +2,30 @@ package com.geek.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 
 import com.geek.bean.EasybuyUser;
 import com.geek.dao.EasybuyUserDAO;
 
-public class UserService {
+public class UserService extends CommonService{
+	
+	private EasybuyUserDAO dao;
 	
 	/**
-	 * 检查是否已经注册过，以及是否合法
+	 * 检查用户名是否存在
+	 * @param name
 	 * @return
 	 */
-	public static boolean isCanRegistered(String name,String password,String repassword){
-		EasybuyUserDAO ebu = new EasybuyUserDAO();
-		Session session = ebu.getSession();
-		session.beginTransaction();
-		List list = ebu.findByEuUserName(name);
-		session.getTransaction().commit();
-		session.close();
+	public boolean isExisted(String name){
+		
+		List list = dao.findByEuUserName(name);
+		
 		if(list == null || list.size() == 0)
-			if(password.equals(repassword))
-				return true;
-		return false;
+			return false;
+		return true;
 	}
 	
 	/**
@@ -31,28 +33,45 @@ public class UserService {
 	 * @param name
 	 * @param password
 	 */
-	public static void registerUser(String name,String password){
-		EasybuyUserDAO ebu = new EasybuyUserDAO();
-		EasybuyUser user = new EasybuyUser();
-		user.setEuUserName(name);
-		user.setEuPassword(password);
-		Session session = ebu.getSession();
-		session.beginTransaction();
-		ebu.save(user);
-		session.getTransaction().commit();
-		session.close();
+	public String registerUser(String name,String password,String repassword){
+		if(password.equals(repassword))
+			if(!isExisted(name)){
+				EasybuyUser user = new EasybuyUser();
+				user.setEuUserName(name);
+				user.setEuPassword(password);
+				dao.save(user);
+				return "register success!";
+			}
+			else{
+				return "user is existed!";
+			}
+		return "the repassword don't matched the password!";
+		
 	}
 	
-	public static boolean isCanLogin(String name,String password){
-		EasybuyUserDAO ebu = new EasybuyUserDAO();
-		EasybuyUser user;
-		Session session = ebu.getSession();
-		List list = ebu.findByEuUserName(name);
-		if(list != null && list.size() != 0){
-			user = (EasybuyUser)list.get(0);
-			if(user.getEuPassword().equals(password))
-				return true;
+	/**
+	 * 登录用户
+	 * @param name
+	 * @param password
+	 * @return
+	 */
+	public String loginUser(String username,String password){
+		String sql = "from EasybuyUser where (eu_user_name='" + username+ "') and (eu_password='" + password+ "')";
+		List list = dao.findBySql(sql);
+		if(list == null || list.size() == 0)
+			return "用户名或密码错误";
+		else{
+			HttpSession session = ServletActionContext.getRequest().getSession();
+			session.setAttribute("user", list.get(0));
+			return "登录成功";
 		}
-		return false;
+	}
+
+	public EasybuyUserDAO getDao() {
+		return dao;
+	}
+
+	public void setDao(EasybuyUserDAO dao) {
+		this.dao = dao;
 	}
 }

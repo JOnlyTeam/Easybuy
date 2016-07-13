@@ -72,12 +72,12 @@
 		</div>
 	</div>
 	<div id="product" class="main">
-		<h1>${productInfo.epName}</h1>
+		<h1>${product.epName}</h1>
 		<div class="infos">
-			<div class="thumb"><img src="${productInfo.epFileName}" height="300" width="300"/></div>
+			<div class="thumb"><img src="${product.epFileName}" height="300" width="300"/></div>
 			<div class="buy">
-				<p>商城价：<span class="price">${productInfo.epPrice}</span></p>
-				<p>库　存：${productInfo.epStock}</p>
+				<p>商城价：<span class="price">${product.epPrice}</span></p>
+				<p>库　存：${product.epStock}</p>
 				<div class="button"><input type="button" name="button" value="" onclick="goBuy(1)" /><a href="#">放入购物车</a></div>
 			</div>
 			<div class="clear"></div>
@@ -85,7 +85,7 @@
 		<div class="introduce">
 			<h2><strong>商品详情</strong></h2>
 			<div class="text">
-				${productInfo.epDescription}
+				${product.epDescription}
 			</div>
 		</div>
 	</div>

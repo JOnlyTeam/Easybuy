@@ -5,44 +5,59 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
 import com.geek.service.UserService;
-import com.google.code.kaptcha.servlet.KaptchaServlet;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport {
 	
+	private HttpSession session;
+	
 	private String userName;
 	private String passWord;
 	private String rePassWord;
+	private String kaptcha;
+	
+	private UserService userService;
+	
 	public String register(){
-		//System.out.println(userName);
-		//System.out.println(passWord);
-		
-		if(UserService.isCanRegistered(userName, passWord, rePassWord)){
-			UserService.registerUser(userName, passWord);
-			return "success";
-		}		
-		return "error";
+		session = ServletActionContext.getRequest().getSession();
+		String kaptchaExpected =  (String) session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+		//System.out.println(userName+" "+passWord+" "+ rePassWord + " " + kaptchaExpected + " " + kaptcha);
+		if(kaptcha != null && kaptcha.equals(kaptchaExpected)){
+			String info = userService.registerUser(userName, passWord, rePassWord);
+			if("register success!".equals(info)){
+				System.out.println("success");
+				return "success";
+			}
+			else{
+				session.setAttribute("error", info);
+				System.out.println("error");
+				return "register";
+			}			
+		}
+		session.setAttribute("error", "验证码错误!");
+		System.out.println("error2");
+		return "register";
 	}
 	
 	
 	public String login(){
-		
-		String kaptchaExpected = (String)ServletActionContext.getContext().getSession()
-				.get(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
-		
-		String kaptchaReceived = (String)ServletActionContext.getRequest().getParameter("kaptcha");
-		
-		if(kaptchaExpected != null && kaptchaExpected.equals(kaptchaReceived))
-			return "error";
-		
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		if(UserService.isCanLogin(userName, passWord)){
-			session.setAttribute("logedin", userName);
-			return "success";
+		session = ServletActionContext.getRequest().getSession();
+		String kaptchaExpected =  (String) session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+		if(kaptcha != null && kaptcha.equals(kaptchaExpected)){
+			String info = userService.loginUser(userName, passWord);
+			if("登录成功".equals(info))
+				return "success";
+			else{
+				session.setAttribute("error", info);
+				return "login";
+			}			
 		}
-		session.setAttribute("login_error", "用户名或密码错误");
-		return "error";
+		session.setAttribute("error", "验证码错误!");
+		return "login";
 	}
+	
+	
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -60,5 +75,25 @@ public class UserAction extends ActionSupport {
 	}
 	public void setRePassWord(String rePassWord) {
 		this.rePassWord = rePassWord;
+	}
+
+
+	public String getKaptcha() {
+		return kaptcha;
+	}
+
+
+	public void setKaptcha(String kaptcha) {
+		this.kaptcha = kaptcha;
+	}
+
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }

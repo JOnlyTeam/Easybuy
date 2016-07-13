@@ -28,6 +28,7 @@
 			resource="com/geek/bean/EasybuyProductCategory.hbm.xml" />
 		<mapping resource="com/geek/bean/EasybuyAnnouncement.hbm.xml" />
 		<mapping resource="com/geek/bean/EasybuyProduct.hbm.xml" />
+		<mapping resource="com/geek/bean/EasybuyComment.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>

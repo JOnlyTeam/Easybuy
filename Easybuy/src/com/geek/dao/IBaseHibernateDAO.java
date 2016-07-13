@@ -1,5 +1,7 @@
 package com.geek.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 
 
@@ -9,4 +11,6 @@ import org.hibernate.Session;
  */
 public interface IBaseHibernateDAO {
 	public Session getSession();
+	public List findBySql(String sql);
+	public List findBySql(String sql,int start,int size);
 }
