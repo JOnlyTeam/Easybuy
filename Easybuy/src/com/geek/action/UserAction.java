@@ -103,6 +103,7 @@ public class UserAction extends ActionSupport {
 	 */
 	public String userList(){
 		List list = userService.getUserList();
+		System.out.println("用户列表"+list.size());
 		session = ServletActionContext.getRequest().getSession();
 		session.setAttribute("userList", list);
 		return "success";
