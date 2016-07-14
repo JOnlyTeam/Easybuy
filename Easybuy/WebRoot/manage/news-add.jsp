@@ -50,15 +50,15 @@
 	<div class="main">
 		<h2>添加新闻</h2>
 		<div class="manage">
-			<form action="manage-result.jsp">
+			<form action="createNews.action">
 				<table class="form">
 					<tr>
 						<td class="field">新闻标题：</td>
-						<td><input type="text" class="text" name="title" value="" /></td>
+						<td><input type="text" class="text" name="news.enTitle" value="" /></td>
 					</tr>
 					<tr>
 						<td class="field">新闻内容：</td>
-						<td><textarea name="content"></textarea></td>
+						<td><textarea name="news.enContent"></textarea></td>
 					</tr>
 					<tr>
 						<td></td>

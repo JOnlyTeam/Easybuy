@@ -1,15 +1,15 @@
 package com.geek.dao;
 
-import com.geek.bean.EasybuyComment;
-
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.geek.bean.EasybuyComment;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -33,7 +33,9 @@ public class EasybuyCommentDAO extends BaseHibernateDAO {
 	public void save(EasybuyComment transientInstance) {
 		log.debug("saving EasybuyComment instance");
 		try {
-			getSession().save(transientInstance);
+			Session session = getSession();
+			session.save(transientInstance);
+			session.flush();
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,9 @@ public class EasybuyNewsDAO extends BaseHibernateDAO {
 	public void delete(EasybuyNews persistentInstance) {
 		log.debug("deleting EasybuyNews instance");
 		try {
-			getSession().delete(persistentInstance);
+			Session session = getSession();
+			session.delete(persistentInstance);
+			session.flush();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
@@ -128,7 +131,11 @@ public class EasybuyNewsDAO extends BaseHibernateDAO {
 	public void attachDirty(EasybuyNews instance) {
 		log.debug("attaching dirty EasybuyNews instance");
 		try {
-			getSession().saveOrUpdate(instance);
+			Session session = getSession();
+			session.flush();
+			session.saveOrUpdate(instance);
+			session.flush();
+			
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);

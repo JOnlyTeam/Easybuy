@@ -55,11 +55,11 @@
 				<table class="form">
 					<tr>
 						<td class="field">用户名：</td>
-						<td><input type="text" class="text" name="user.euUserName" value=${fillUser.euUserName} readonly="readonly" /></td>
+						<td><input type="text" class="text" name="user.euUserName" value="${fillUser.euUserName}" readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<td class="field">密码：</td>
-						<td><input type="text" class="text" name="user.euPassword" value=${fillUser.euPassword} /></td>
+						<td><input type="text" class="text" name="user.euPassword" value="${fillUser.euPassword}" /></td>
 					</tr>
 					<tr>
 						<c:if test="${fillUser.euSex=='男'}">
@@ -74,24 +74,24 @@
 					</tr>
 					<tr>
 						<td class="field">生日：</td>
-						<td><input type="text" class="text" name="user.euBirthday"  value=${fillUser.euBirthday} /></td>
+						<td><input type="text" class="text" name="user.euBirthday"  value="${fillUser.euBirthday}" /></td>
 						<td>格式:94/04/05</td>
 					</tr>
 					<tr>
 						<td class="field">手机号码：</td>
-						<td><input type="text" class="text" name="user.euMobile" value=${fillUser.euMobile} /></td>
+						<td><input type="text" class="text" name="user.euMobile" value="{fillUser.euMobile}" /></td>
 					</tr>
 					<tr>
 						<td class="field">身份证号：</td>
-						<td><input type="text" class="text" name="user.euIdentityCode"  value=${fillUser.euIdentityCode}/></td>
+						<td><input type="text" class="text" name="user.euIdentityCode"  value="${fillUser.euIdentityCode}"/></td>
 					</tr>
 					<tr>
 						<td class="field">邮箱：</td>
-						<td><input type="text" class="text" name="user.euEmail" value=${fillUser.euEmail}/></td>
+						<td><input type="text" class="text" name="user.euEmail" value="${fillUser.euEmail}"/></td>
 					</tr>
 					<tr>
 						<td class="field">送货地址：</td>
-						<td><input type="text" class="text" name="user.euAddress" value=${fillUser.euAddress} /></td>
+						<td><input type="text" class="text" name="user.euAddress" value="${fillUser.euAddress}" /></td>
 					</tr>
 					<tr>
 						<c:if test="${fillUser.euStatus==1}">

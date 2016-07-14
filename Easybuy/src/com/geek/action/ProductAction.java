@@ -3,12 +3,12 @@ package com.geek.action;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.geek.bean.EasybuyProduct;
+import com.geek.bean.EasybuyProductCategory;
 import com.geek.service.ProductService;
 
 public class ProductAction {
@@ -17,6 +17,10 @@ public class ProductAction {
 	private int productId;
 	private HttpSession session;
 	private ProductService productService;
+	
+	private int parentId;
+	private String className;
+	private int classId;
 	
 	public String productView(){
 		//System.out.println(productId);
@@ -43,6 +47,45 @@ public class ProductAction {
 		return "success";
 	}
 	
+	/**
+	 * 分类管理
+	 * @return
+	 */
+	public String productClass(){
+		List list = productService.getCotegory();
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		session.setAttribute("proClass", list);
+		return "success";
+	}
+	
+	/**
+	 * 填充分类
+	 * @return
+	 */
+	public String fillProductClass(){
+		List list = productService.getCotegory();
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		session.setAttribute("fillClass", list);
+		return "success";
+	}
+	
+	/**
+	 * 添加分类
+	 * @return
+	 */
+	public String updateProductClass(){
+		productService.addProductClass(parentId, className);
+		return "success";
+	}
+	
+	/**
+	 * 删除商品分类
+	 * @return
+	 */
+	public String deleteProductClass(){
+		productService.deleteProductClass(classId);
+		return "success";
+	}
 	public int getProductId() {
 		return productId;
 	}
@@ -73,5 +116,29 @@ public class ProductAction {
 
 	public void setPerpageNumber(int perpageNumber) {
 		this.perpageNumber = perpageNumber;
+	}
+
+	public int getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public int getClassId() {
+		return classId;
+	}
+
+	public void setClassId(int classId) {
+		this.classId = classId;
 	}
 }

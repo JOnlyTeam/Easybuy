@@ -17,7 +17,7 @@
 			<a href="login.jsp">登录</a>
 			<a href="register.jsp">注册</a>
 		</c:if>	
-		<a href="guestbook.jsp">留言</a>
+		<a href="commentListByPage.action?page=1">留言</a>
 	</div>
 	<div class="navbar">
 		<ul class="clearfix">

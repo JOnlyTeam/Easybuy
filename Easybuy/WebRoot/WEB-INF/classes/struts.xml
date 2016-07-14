@@ -32,7 +32,15 @@
         <action name="productByPage" class="com.geek.action.ProductAction" method="productByPage">
         	<result name="success">/product-list.jsp</result>
         </action>
-     
+        <action name="commentList" class="com.geek.action.MessageAction" method="commentList">
+        	<result name="success">/guestbook.jsp</result>
+        </action>
+     	<action name="createComment" class="com.geek.action.MessageAction" method="createComment">
+        	<result name="success">/guestbook.jsp</result>
+        </action>
+        <action name="commentListByPage" class="com.geek.action.MessageAction" method="commentListByPage">
+        	<result name="success">/guestbook.jsp</result>
+        </action>
     </package>   
     <package name="manage" namespace="/manage" extends="struts-default">
    		<action name="createUser" class="com.geek.action.UserAction" method="createUser">
@@ -53,6 +61,35 @@
         <action name="makeUserFill" class="com.geek.action.UserAction" method="makeUserFill">
         	<result name="success">/manage/user-modify.jsp</result>
         </action>
+        
+        <action name="newsList" class="com.geek.action.MessageAction" method="newsList">
+        	<result name="success">/manage/news.jsp</result>
+        </action>
+        <action name="createNews" class="com.geek.action.MessageAction" method="createNews">
+        	<result name="success">/manage/manage-result.jsp</result>
+        </action>
+        <action name="deleteNews" class="com.geek.action.MessageAction" method="deleteNews">
+        	<result name="success">/manage/manage-result.jsp</result>
+        </action>
+         <action name="fillNews" class="com.geek.action.MessageAction" method="fillNews">
+        	<result name="success">/manage/news-modify.jsp</result>
+         </action>
+         <action name="updateNews" class="com.geek.action.MessageAction" method="updateNews">
+        	<result name="success">/manage/manage-result.jsp</result>
+         </action>
+         <action name="productClass" class="com.geek.action.ProductAction" method="productClass">
+        	<result name="success">/manage/productClass.jsp</result>
+         </action>
+         <action name="fillProductClass" class="com.geek.action.ProductAction" method="fillProductClass">
+        	<result name="success">/manage/productClass-add.jsp</result>
+         </action>
+         <action name="updateProductClass" class="com.geek.action.ProductAction" method="updateProductClass">
+        	<result name="success">/manage/manage-result.jsp</result>
+         </action>
+         <action name="deleteProductClass" class="com.geek.action.ProductAction" method="deleteProductClass">
+        	<result name="success">/manage/manage-result.jsp</result>
+         </action>
+         
     </package>  
     <!-- Add packages here -->  
 

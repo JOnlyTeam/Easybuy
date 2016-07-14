@@ -16,7 +16,7 @@ public class UserAction extends ActionSupport {
 	
 	private EasybuyUser user;
 	
-	private int userId;
+	private int id;
 	private String userName;
 	private String passWord;
 	private String rePassWord;
@@ -102,7 +102,7 @@ public class UserAction extends ActionSupport {
 	 */
 	public String deleteUser(){
 		//System.out.println(userId);
-		userService.deleteUser(userId);
+		userService.deleteUser(id);
 		return "success";
 	}
 	
@@ -123,7 +123,7 @@ public class UserAction extends ActionSupport {
 	 * @return
 	 */
 	public String makeUserFill(){
-		EasybuyUser user = userService.getEasybuyUser(userId);
+		EasybuyUser user = userService.getEasybuyUser(id);
 		session = ServletActionContext.getRequest().getSession();
 		session.setAttribute("fillUser", user);
 		return "success";
@@ -178,12 +178,12 @@ public class UserAction extends ActionSupport {
 	}
 
 
-	public int getUserId() {
-		return userId;
+	public int getId() {
+		return id;
 	}
 
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setId(int id) {
+		this.id = id;
 	}
 }

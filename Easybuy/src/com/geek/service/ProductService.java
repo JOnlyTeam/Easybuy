@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import org.apache.struts2.ServletActionContext;
 
 import com.geek.bean.EasybuyProduct;
+import com.geek.bean.EasybuyProductCategory;
 import com.geek.dao.EasybuyProductCategoryDAO;
 import com.geek.dao.EasybuyProductDAO;
 
@@ -110,7 +111,25 @@ public class ProductService extends CommonService {
 		}
 		return result;
 	}
+	/**
+	 * 添加新的商品分类
+	 * @return
+	 */
+	public void addProductClass(int parentId,String className){
+		EasybuyProductCategory cate = new EasybuyProductCategory();
+		cate.setEpcParentId(parentId);
+		cate.setEpcName(className);
+		cdao.save(cate);
+	}
 	
+	/**
+	 * 删除商品分类
+	 * @return
+	 */
+	public void deleteProductClass(int id){
+		EasybuyProductCategory cate = cdao.findById(id);
+		cdao.delete(cate);
+	}
 	public EasybuyProductDAO getDao() {
 		return dao;
 	}

@@ -119,5 +119,6 @@
 	<bean id="messageAction" class="com.geek.action.MessageAction">
 		<property name="announcementService" ref="announcementService" />
 		<property name="newsService" ref="newsService" />
+		<property name="commentService" ref="commentService" />
 	</bean>
 </beans>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,9 @@ public class EasybuyProductCategoryDAO extends BaseHibernateDAO {
 	public void save(EasybuyProductCategory transientInstance) {
 		log.debug("saving EasybuyProductCategory instance");
 		try {
-			getSession().save(transientInstance);
+			Session session = getSession();
+			session.save(transientInstance);
+			session.flush();
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
@@ -42,7 +45,9 @@ public class EasybuyProductCategoryDAO extends BaseHibernateDAO {
 	public void delete(EasybuyProductCategory persistentInstance) {
 		log.debug("deleting EasybuyProductCategory instance");
 		try {
-			getSession().delete(persistentInstance);
+			Session session = getSession();
+			session.delete(persistentInstance);
+			session.flush();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);

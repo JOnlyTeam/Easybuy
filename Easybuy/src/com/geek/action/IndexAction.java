@@ -28,7 +28,7 @@ public class IndexAction extends ActionSupport {
 		session.setAttribute("hotSales", list);
 		list = productService.getSalePriceProducts();
 		session.setAttribute("salePrices", list);	
-		list = newsService.getNewsList();
+		list = newsService.getNewsList(0,7);
 		session.setAttribute("newsList", list);		
 		list = announcementService.getAnnouncementList();
 		session.setAttribute("annoList", list);

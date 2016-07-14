@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -56,16 +57,14 @@
 					<th>新闻标题</th>
 					<th>操作</th>
 				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td>高老庄地震了</td>
-					<td class="w1 c"><a href="news-modify.jsp">修改</a> <a href="javascript:Delete(1);">删除</a></td>
-				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td>高老庄地震了</td>
-					<td class="w1 c"><a href="news-modify.jsp">修改</a> <a href="javascript:Delete(1);">删除</a></td>
-				</tr>
+				<c:forEach var="news" items="${manage_news}">
+					<tr>
+					<td class="first w4 c">${news.enId}</td>
+					<td>${news.enTitle}</td>
+					<td class="w1 c"><a href="fillNews.action?id=${news.enId}">修改</a> <a href="deleteNews.action?id=${news.enId}">删除</a></td>
+					</tr>
+				</c:forEach>
+				
 			</table>
 		</div>
 	</div>

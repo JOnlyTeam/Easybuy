@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=utf-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -75,46 +76,39 @@
 		<div class="guestbook">
 			<h2>全部留言</h2>
 			<ul>
-				<li>
-					<dl>
-						<dt>那个什么衣服贵吗</dt>
-						<dd class="author">网友：张三丰 <span class="timer">2010:10:10 20:00:01</span></dd>
-						<dd>不贵</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>那个什么衣服贵吗</dt>
-						<dd class="author">网友：张三丰 <span class="timer">2010:10:10 20:00:01</span></dd>
-						<dd>不贵</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt>那个什么衣服贵吗</dt>
-						<dd class="author">网友：张三丰 <span class="timer">2010:10:10 20:00:01</span></dd>
-						<dd>不贵</dd>
-					</dl>
-				</li>
+				<c:forEach var="com" items="${commentPage}">
+					<li>
+						<dl>
+						<dt>${com.ecContent}</dt>
+						<dd class="author">${com.ecNickName} <span class="timer">${com.ecCreateTime}</span></dd>
+						<dd>${com.ecReply}</dd>
+						</dl>
+					</li>
+				</c:forEach>
+					
 			</ul>
 			<div class="clear"></div>
 			<div class="pager">
 				<ul class="clearfix">
-					<li><a href="#">上一页</a></li>
-					<li class="current">1</li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">下一页</a></li>
+					<c:if test="${pageInfo.currentPage>1}">
+						<li><a href="commentListByPage.action?page=${pageInfo.currentPage-1}">上一页</a></li>
+					</c:if>
+					<li class="current"><a href="commentListByPage.action?page=1">1</a></li>
+					<li><a href="commentListByPage.action?page=2">2</a></li>
+					<li><a href="commentListByPage.action?page=3">3</a></li>
+					<li><a href="commentListByPage.action?page=4">4</a></li>
+					<li><a href="commentListByPage.action?page=5">5</a></li>
+					<c:if test="${pageInfo.currentPage<pageInfo.totalPage}">
+						<li><a href="commentListByPage.action?page=${pageInfo.currentPage+1}">下一页</a></li>
+					</c:if>
 				</ul>
 			</div>
 			<div id="reply-box">
-				<form>
+				<form action="createComment.action">
 					<table>
 						<tr>
 							<td class="field">昵称：</td>
-							<td><input class="text" type="text" name="guestName" /></td>
+							<td><input class="text" type="text" name="comment.ecNickName" /></td>
 						</tr>
 						<tr>
 							<td class="field">留言标题：</td>
@@ -122,7 +116,7 @@
 						</tr>
 						<tr>
 							<td class="field">留言内容：</td>
-							<td><textarea name="guestContent"></textarea></td>
+							<td><textarea name="comment.ecContent"></textarea></td>
 						</tr>
 						<tr>
 							<td></td>
