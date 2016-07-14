@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +50,9 @@ public class EasybuyUserDAO extends BaseHibernateDAO {
 	public void delete(EasybuyUser persistentInstance) {
 		log.debug("deleting EasybuyUser instance");
 		try {
-			getSession().delete(persistentInstance);
+			Session session = getSession();
+			session.delete(persistentInstance);
+			session.flush();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
@@ -61,7 +64,7 @@ public class EasybuyUserDAO extends BaseHibernateDAO {
 		log.debug("getting EasybuyUser instance with id: " + id);
 		try {
 			EasybuyUser instance = (EasybuyUser) getSession().get(
-					"com.geek.dao.EasybuyUser", id);
+					"com.geek.bean.EasybuyUser", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -163,7 +166,9 @@ public class EasybuyUserDAO extends BaseHibernateDAO {
 	public void attachDirty(EasybuyUser instance) {
 		log.debug("attaching dirty EasybuyUser instance");
 		try {
-			getSession().saveOrUpdate(instance);
+			Session session = getSession();
+			session.saveOrUpdate(instance);
+			session.flush();
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);

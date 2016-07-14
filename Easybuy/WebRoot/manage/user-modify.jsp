@@ -55,11 +55,11 @@
 				<table class="form">
 					<tr>
 						<td class="field">用户名：</td>
-						<td><input type="text" class="text" name="user.euUserName" value=${fillUser.euSex} readonly="readonly" /></td>
+						<td><input type="text" class="text" name="user.euUserName" value=${fillUser.euUserName} readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<td class="field">密码：</td>
-						<td><input type="text" class="text" name="user.euPassword" value=${fillUser.euSex} /></td>
+						<td><input type="text" class="text" name="user.euPassword" value=${fillUser.euPassword} /></td>
 					</tr>
 					<tr>
 						<c:if test="${fillUser.euSex=='男'}">

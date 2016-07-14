@@ -67,6 +67,10 @@ public class UserAction extends ActionSupport {
 	 * @return
 	 */
 	public String createUser(){
+		if(user.getEuSex().equals("1"))
+			user.setEuSex("男");
+		else
+			user.setEuSex("女");
 		session = ServletActionContext.getRequest().getSession();
 		if(userService.isExisted(user.getEuUserName())){
 			session.setAttribute("error", "用户已存在!");
@@ -83,7 +87,11 @@ public class UserAction extends ActionSupport {
 	 * 后台更新用户
 	 * @return
 	 */
-	public String updateUser(){
+	public String motifyUser(){
+		if(user.getEuSex().equals("1"))
+			user.setEuSex("男");
+		else
+			user.setEuSex("女");
 		userService.motifyUser(user);
 		return "success";
 	}
@@ -93,6 +101,7 @@ public class UserAction extends ActionSupport {
 	 * @return
 	 */
 	public String deleteUser(){
+		//System.out.println(userId);
 		userService.deleteUser(userId);
 		return "success";
 	}
@@ -103,7 +112,7 @@ public class UserAction extends ActionSupport {
 	 */
 	public String userList(){
 		List list = userService.getUserList();
-		System.out.println("用户列表"+list.size());
+		//System.out.println("用户列表"+list.size());
 		session = ServletActionContext.getRequest().getSession();
 		session.setAttribute("userList", list);
 		return "success";

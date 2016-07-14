@@ -43,10 +43,10 @@
         	<result name="success">/manage/user.jsp</result>
         </action>
         <action name="deleteUser" class="com.geek.action.UserAction" method="deleteUser">
-        	<result name="success">/manage/user.jsp</result>
+        	<result name="success" >/manage/user.jsp</result>
         </action>
         
-         <action name="userList" class="com.geek.action.UserAction" method="userList">
+         <action name="loadUserList" class="com.geek.action.UserAction" method="userList">
         	<result name="success">/manage/user.jsp</result>
         </action>
         

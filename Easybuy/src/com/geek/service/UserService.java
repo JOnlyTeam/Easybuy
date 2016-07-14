@@ -73,7 +73,17 @@ public class UserService extends CommonService{
 	 * @return
 	 */
 	public void motifyUser(EasybuyUser user){
-		dao.attachDirty(user);
+		List list = dao.findByEuUserName(user.getEuUserName());
+		EasybuyUser puser = (EasybuyUser) list.get(0);
+		puser.setEuAddress(user.getEuAddress());
+		puser.setEuBirthday(user.getEuBirthday());
+		puser.setEuEmail(user.getEuEmail());
+		puser.setEuIdentityCode(user.getEuIdentityCode());
+		puser.setEuMobile(user.getEuMobile());
+		puser.setEuPassword(user.getEuPassword());
+		puser.setEuSex(user.getEuSex());
+		puser.setEuStatus(user.getEuStatus());
+		dao.attachDirty(puser);
 	}
 	
 	/**
