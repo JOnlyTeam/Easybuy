@@ -1,14 +1,15 @@
 package com.geek.dao;
 
-import com.geek.bean.EasybuyProduct;
-
 import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.geek.bean.EasybuyProduct;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -158,7 +159,9 @@ public class EasybuyProductDAO extends BaseHibernateDAO {
 	public void attachDirty(EasybuyProduct instance) {
 		log.debug("attaching dirty EasybuyProduct instance");
 		try {
-			getSession().saveOrUpdate(instance);
+			Session session = getSession();
+			session.saveOrUpdate(instance);
+			session.flush();
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);

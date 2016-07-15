@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//WebRoot/include/manage-header.jsp=UTF-8
+encoding//WebRoot/include/manage-left.jsp=UTF-8
 encoding//WebRoot/manage/product-modify.jsp=UTF-8
 encoding//WebRoot/manage/user-modify.jsp=UTF-8
 encoding//WebRoot/product-list.jsp=UTF-8

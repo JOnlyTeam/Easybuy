@@ -1,22 +1,24 @@
 package com.geek.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.geek.bean.EasybuyProduct;
 import com.geek.bean.EasybuyProductCategory;
+import com.geek.bean.EasybuyShopping;
 import com.geek.dao.EasybuyProductCategoryDAO;
 import com.geek.dao.EasybuyProductDAO;
 
 public class ProductService extends CommonService {
 	private EasybuyProductDAO dao;
 	private EasybuyProductCategoryDAO cdao;
-	
-	
+
 	
 	/**
 	 * 加载商品分类
@@ -130,6 +132,70 @@ public class ProductService extends CommonService {
 		EasybuyProductCategory cate = cdao.findById(id);
 		cdao.delete(cate);
 	}
+	
+	/**
+	 * 购物车添加指定数量商品
+	 * @return
+	 */
+	public void addProduct(int productId,int addNumber){
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		HashMap<Integer,EasybuyShopping> cart= (HashMap<Integer, EasybuyShopping>) session.getAttribute("shoppingCart");
+		if(cart == null)
+			cart = new HashMap<Integer,EasybuyShopping>();
+		EasybuyShopping ebs = cart.get(productId);
+		if(ebs == null){
+			ebs = new EasybuyShopping();
+			ebs.setEpsBuyNum(addNumber);
+			EasybuyProduct pro = dao.findById(productId);
+			ebs.setEpsFileName(pro.getEpFileName());
+			ebs.setEpsId(productId);
+			ebs.setEpsPrice(pro.getEpPrice());
+			ebs.setEpsStack(pro.getEpStock());
+			ebs.setEpsName(pro.getEpName());
+			ebs.setEpsTotalPrice(ebs.getEpsPrice()*ebs.getEpsBuyNum());
+			cart.put(productId, ebs);
+		}
+		else{
+			ebs.setEpsBuyNum(ebs.getEpsBuyNum()+addNumber);
+			ebs.setEpsTotalPrice(ebs.getEpsPrice()*ebs.getEpsBuyNum());
+		}
+		session.removeAttribute("shoppingCart");
+		session.setAttribute("shoppingCart", cart);
+	}
+	
+	/**
+	 * 购物车更新商品数量
+	 */
+	public void setProduct(int productId,int totalNumber){
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		HashMap<Integer,EasybuyShopping> cart= (HashMap<Integer, EasybuyShopping>) session.getAttribute("shoppingCart");
+		EasybuyShopping ebs = cart.get(productId);
+		ebs.setEpsBuyNum(totalNumber);
+		ebs.setEpsTotalPrice(ebs.getEpsPrice()*ebs.getEpsBuyNum());
+		session.removeAttribute("shoppingCart");
+		session.setAttribute("shoppingCart", cart);
+	}
+	
+	/**
+	 * 从购物车删除商品
+	 * @return
+	 */
+	public void delProFromCart(int productId){
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		HashMap<Integer,EasybuyShopping> cart= (HashMap<Integer, EasybuyShopping>) session.getAttribute("shoppingCart");
+		EasybuyShopping ebs = cart.get(productId);
+		if(ebs.getEpsBuyNum()==1){
+			cart.remove(productId);
+		}
+		else{
+			ebs.setEpsBuyNum(ebs.getEpsBuyNum()-1);
+			ebs.setEpsTotalPrice(ebs.getEpsTotalPrice()-ebs.getEpsPrice());
+		}
+		session.removeAttribute("shoppingCart");
+		session.setAttribute("shoppingCart", cart);
+		
+	}
+	
 	public EasybuyProductDAO getDao() {
 		return dao;
 	}
@@ -145,5 +211,7 @@ public class ProductService extends CommonService {
 	public void setCdao(EasybuyProductCategoryDAO cdao) {
 		this.cdao = cdao;
 	}
+
+
 	
 }

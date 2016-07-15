@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>易买网 - 聊天室</title>
+<title>聊天室</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript">
 function setReceiver(obj)

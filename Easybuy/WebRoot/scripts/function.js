@@ -130,19 +130,19 @@ function delCookie(name)
 
 function goBuy(id, price)
 {
-	var newCookie = "";
-	var oldCookie = getCookie("product");
-	if(oldCookie) {
-		if(inArray(oldCookie.split(","), id)) {
-			newCookie = oldCookie;
-		} else {
-			newCookie = id + "," + oldCookie;
-		}
-	} else {
-		newCookie = id;
-	}
-	setCookie("product", newCookie);
-	location.href = "shopping.jsp";
+//	var newCookie = "";
+//	var oldCookie = getCookie("product");
+//	if(oldCookie) {
+//		if(inArray(oldCookie.split(","), id)) {
+//			newCookie = oldCookie;
+//		} else {
+//			newCookie = id + "," + oldCookie;
+//		}
+//	} else {
+//		newCookie = id;
+//	}
+//	setCookie("product", newCookie);
+	location.href = "shoppingCart.action?productId="+id+"&addNumber="+1;
 }
 
 function delShopping(id)
@@ -164,17 +164,6 @@ function delShopping(id)
 
 function reloadPrice(id, status)
 {
-	var price = document.getElementById("price_id_" + id).getElementsByTagName("input")[0].value;
-	var priceBox = document.getElementById("price_id_" + id).getElementsByTagName("span")[0];
 	var number = document.getElementById("number_id_" + id);
-	if(status) {
-		number.value++;
-	} else {
-		if(number.value == 1) {
-			return false;
-		} else {
-			number.value--;
-		}
-	}
-	priceBox.innerHTML = "￥" + price * number.value;
+	location.href="updateShoppingCart.action?addNumber="+number.value+"&productId="+id;
 }

@@ -62,8 +62,11 @@ public class UserService extends CommonService{
 			return "用户名或密码错误";
 		else{
 			HttpSession session = ServletActionContext.getRequest().getSession();
-			session.setAttribute("user", list.get(0));
-			return "登录成功";
+			EasybuyUser user = (EasybuyUser)list.get(0);
+			session.setAttribute("currentUser", user);
+			if(user.getEuStatus().equals("2"))	
+				return "管理员登录成功";
+			return "会员登录成功";
 		}
 	}
 	

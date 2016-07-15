@@ -51,8 +51,10 @@ public class UserAction extends ActionSupport {
 		String kaptchaExpected =  (String) session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
 		if(kaptcha != null && kaptcha.equals(kaptchaExpected)){
 			String info = userService.loginUser(userName, passWord);
-			if("登录成功".equals(info))
+			if("会员登录成功".equals(info))
 				return "success";
+			else if("管理员登录成功".equals(info))
+				return "manage";
 			else{
 				session.setAttribute("error", info);
 				return "login";

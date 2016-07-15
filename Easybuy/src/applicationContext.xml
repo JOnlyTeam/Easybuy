@@ -79,6 +79,8 @@
 	<bean id="easybuyProductDAO" class="com.geek.dao.EasybuyProductDAO"></bean>
 	<bean id="easybuyAnnouncementDAO" class="com.geek.dao.EasybuyAnnouncementDAO"></bean>
 	<bean id="easybuyUserDAO" class="com.geek.dao.EasybuyUserDAO"></bean>
+	<bean id="easybuyOrderDAO" class="com.geek.dao.EasybuyOrderDAO"></bean>
+	<bean id="easybuyOrderDetailDAO" class="com.geek.dao.EasybuyOrderDetailDAO"></bean>
 	
 	<!-- 配置Service -->
 	<bean id="newsService" class="com.geek.service.NewsService">
@@ -91,12 +93,23 @@
 		<property name="dao" ref="easybuyProductDAO"></property>
 		<property name="cdao" ref="easybuyProductCategoryDAO"></property>
 	</bean>
+<!-- 	private EasybuyOrderDAO orderdao; -->
+<!-- 	private EasybuyOrderDetailDAO detaildao; -->
+<!-- 	private EasybuyUserDAO userdao; -->
+<!-- 	private EasybuyProductDAO prodao; -->
+	<bean id="orderService" class="com.geek.service.OrderService">
+		<property name="orderdao" ref="easybuyOrderDAO"></property>
+		<property name="detaildao" ref="easybuyOrderDetailDAO"></property>
+		<property name="userdao" ref="easybuyUserDAO"></property>
+		<property name="prodao" ref="easybuyProductDAO"></property>
+	</bean>
 	<bean id="userService" class="com.geek.service.UserService">
 		<property name="dao" ref="easybuyUserDAO"></property>
 	</bean>
 	<bean id="announcementService" class="com.geek.service.AnnouncementService">
 		<property name="dao" ref="easybuyAnnouncementDAO"></property>
 	</bean>
+	
 	<!-- 
 	
 	private ProductService productService;
@@ -115,6 +128,7 @@
 	</bean>
 	<bean id="productAction" class="com.geek.action.ProductAction">
 		<property name="productService" ref="productService"></property>
+		<property name="orderService" ref="orderService"></property>
 	</bean>
 	<bean id="messageAction" class="com.geek.action.MessageAction">
 		<property name="announcementService" ref="announcementService" />

@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.geek.bean.EasybuyProduct;
 import com.geek.bean.EasybuyProductCategory;
+import com.geek.service.OrderService;
 import com.geek.service.ProductService;
 
 public class ProductAction {
@@ -17,7 +18,9 @@ public class ProductAction {
 	private int productId;
 	private HttpSession session;
 	private ProductService productService;
+	private OrderService  orderService;
 	
+	private int addNumber;
 	private int parentId;
 	private String className;
 	private int classId;
@@ -27,6 +30,9 @@ public class ProductAction {
 		EasybuyProduct pro = productService.getProductInfo(productId);
 		session = ServletActionContext.getRequest().getSession();
 		session.setAttribute("product", pro);
+		List list = productService.getLastLookProduct();
+		//System.out.println("zuijinliulan"+list.size());
+		session.setAttribute("LastLook", list);
 		return "success";	
 	}
 	
@@ -44,6 +50,9 @@ public class ProductAction {
 			totalPage++;
 		page.put("totalPage",totalPage);
 		session.setAttribute("page", page);
+		list = productService.getLastLookProduct();
+		//System.out.println("zuijinliulan"+list.size());
+		session.setAttribute("LastLook", list);
 		return "success";
 	}
 	
@@ -84,6 +93,38 @@ public class ProductAction {
 	 */
 	public String deleteProductClass(){
 		productService.deleteProductClass(classId);
+		return "success";
+	}
+	
+	/**
+	 * 将商品放入购物车
+	 * @return
+	 */
+	public String shoppingCart(){
+		productService.addProduct(productId,addNumber);
+		return "success";
+	}
+	/**
+	 * 更新购物车商品数量
+	 */
+	public String updateShoppingCart(){
+		productService.setProduct(productId, addNumber);
+		return "success";
+	}
+	/**
+	 * 从购物车删除商品
+	 * @return
+	 */
+	public String delProFromCart(){
+		productService.delProFromCart(productId);
+		return "success";
+	}
+	/**
+	 * 商品结算
+	 * @return
+	 */
+	public String productAccount(){
+		orderService.productAccount();
 		return "success";
 	}
 	public int getProductId() {
@@ -140,5 +181,21 @@ public class ProductAction {
 
 	public void setClassId(int classId) {
 		this.classId = classId;
+	}
+
+	public int getAddNumber() {
+		return addNumber;
+	}
+
+	public void setAddNumber(int addNumber) {
+		this.addNumber = addNumber;
+	}
+
+	public OrderService getOrderService() {
+		return orderService;
+	}
+
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
 	}
 }

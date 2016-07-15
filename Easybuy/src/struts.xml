@@ -15,6 +15,7 @@
         </action>  
         <action name="login" class="com.geek.action.UserAction" method="login">
         	<result name="success">/login-result.jsp</result>
+        	<result name="manage">/loginManage-result.jsp</result>
         	<result name="login">/login.jsp</result>
         </action>
         <action name="toIndex" class="com.geek.action.IndexAction" method="loadIndex">
@@ -40,6 +41,18 @@
         </action>
         <action name="commentListByPage" class="com.geek.action.MessageAction" method="commentListByPage">
         	<result name="success">/guestbook.jsp</result>
+        </action>
+        <action name="shoppingCart" class="com.geek.action.ProductAction" method="shoppingCart">
+        	<result name="success">/shopping.jsp</result>
+        </action>
+        <action name="delProFromCart" class="com.geek.action.ProductAction" method="delProFromCart">
+        	<result name="success">/shopping.jsp</result>
+        </action>
+         <action name="updateShoppingCart" class="com.geek.action.ProductAction" method="updateShoppingCart">
+        	<result name="success">/shopping.jsp</result>
+        </action>
+        <action name="productAccount" class="com.geek.action.ProductAction" method="productAccount">
+        	<result name="success">/shopping-result.jsp</result>
         </action>
     </package>   
     <package name="manage" namespace="/manage" extends="struts-default">
