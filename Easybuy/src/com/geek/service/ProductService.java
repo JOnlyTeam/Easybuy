@@ -76,7 +76,7 @@ public class ProductService extends CommonService {
 	}
 	
 	/**
-	 * 商品总页数
+	 * 商品总行数
 	 * @return
 	 */
 	public int getProductPage(){
@@ -123,7 +123,15 @@ public class ProductService extends CommonService {
 		cate.setEpcName(className);
 		cdao.save(cate);
 	}
-	
+	/**
+	 * 更新商品分类
+	 */
+	public void updateClass(int id,int parentId,String className){
+		EasybuyProductCategory cat = cdao.findById(id);
+		cat.setEpcParentId(parentId);
+		cat.setEpcName(className);
+		cdao.attachDirty(cat);
+	}
 	/**
 	 * 删除商品分类
 	 * @return

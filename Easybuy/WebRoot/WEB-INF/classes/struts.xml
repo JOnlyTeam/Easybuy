@@ -8,7 +8,16 @@
     <!-- 把主题配置为simple -->  
     <constant name="struts.ui.theme" value="simple" />
     
-    <package name="default" namespace="/" extends="struts-default">  
+    <package name="default" namespace="/" extends="struts-default"> 
+    	 <interceptors>  
+            <interceptor name="loginInteceptor" class="com.geek.interceptor.LoginCheck" />  
+            <interceptor-stack name="loginStack">  
+                   <interceptor-ref name="loginInteceptor">  
+                       <param name="excludeMethods">login,register</param>  
+                   </interceptor-ref>  
+                   <interceptor-ref name="defaultStack"></interceptor-ref>  
+            </interceptor-stack>  
+		</interceptors>   
         <action name="register" class="com.geek.action.UserAction" method="register">  
             <result name="success">/reg-result.jsp</result>  
             <result name="register">/register.jsp</result>
@@ -17,6 +26,9 @@
         	<result name="success">/login-result.jsp</result>
         	<result name="manage">/loginManage-result.jsp</result>
         	<result name="login">/login.jsp</result>
+        </action>
+         <action name="logout" class="com.geek.action.UserAction" method="logout">
+        	<result name="success">/toIndex.jsp</result>
         </action>
         <action name="toIndex" class="com.geek.action.IndexAction" method="loadIndex">
         	<result name="success">/index.jsp</result>
@@ -44,27 +56,35 @@
         </action>
         <action name="shoppingCart" class="com.geek.action.ProductAction" method="shoppingCart">
         	<result name="success">/shopping.jsp</result>
+        	<result name="login">/login.jsp</result>
+        	<interceptor-ref name="loginStack"></interceptor-ref>
         </action>
         <action name="delProFromCart" class="com.geek.action.ProductAction" method="delProFromCart">
         	<result name="success">/shopping.jsp</result>
+        	<result name="login">/login.jsp</result>
+        	<interceptor-ref name="loginStack"></interceptor-ref>
         </action>
          <action name="updateShoppingCart" class="com.geek.action.ProductAction" method="updateShoppingCart">
         	<result name="success">/shopping.jsp</result>
+        	<result name="login">/login.jsp</result>
+        	<interceptor-ref name="loginStack"></interceptor-ref>
         </action>
         <action name="productAccount" class="com.geek.action.ProductAction" method="productAccount">
         	<result name="success">/shopping-result.jsp</result>
+        	<result name="login">/login.jsp</result>
+        	<interceptor-ref name="loginStack"></interceptor-ref>
         </action>
     </package>   
     <package name="manage" namespace="/manage" extends="struts-default">
    		<action name="createUser" class="com.geek.action.UserAction" method="createUser">
-        	<result name="success">/manage/user-add.jsp</result>
+        	<result name="success">/manage/manage-result.jsp</result>
         	<result name="error">/manage/user-add.jsp</result>
         </action>
         <action name="motifyUser" class="com.geek.action.UserAction" method="motifyUser">
         	<result name="success">/manage/user.jsp</result>
         </action>
         <action name="deleteUser" class="com.geek.action.UserAction" method="deleteUser">
-        	<result name="success" >/manage/user.jsp</result>
+        	<result name="success" >/manage/manage-result.jsp</result>
         </action>
         
          <action name="loadUserList" class="com.geek.action.UserAction" method="userList">
@@ -102,7 +122,24 @@
          <action name="deleteProductClass" class="com.geek.action.ProductAction" method="deleteProductClass">
         	<result name="success">/manage/manage-result.jsp</result>
          </action>
-         
+         <action name="editClass" class="com.geek.action.ProductAction" method="editClass">
+        	<result name="success">/manage/productClass-modify.jsp</result>
+         </action>
+         <action name="updateClass" class="com.geek.action.ProductAction" method="updateClass">
+        	<result name="success">/manage/manage-result.jsp</result>
+         </action>
+         <action name="loadOrderList" class="com.geek.action.ProductAction" method="loadOrderList">
+        	<result name="success">/manage/order.jsp</result>
+         </action>
+         <action name="queryOrder" class="com.geek.action.ProductAction" method="queryOrder">
+        	<result name="success">/manage/orderQuery.jsp</result>
+         </action>
+         <action name="deleteOrder" class="com.geek.action.ProductAction" method="deleteOrder">
+        	<result name="success">/manage/manage-result.jsp</result>
+         </action>
+         <action name="loadCommentList" class="com.geek.action.MessageAction" method="commentListByPage">
+        	<result name="success">/manage/guestbook.jsp</result>
+        </action>
     </package>  
     <!-- Add packages here -->  
 

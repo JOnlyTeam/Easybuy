@@ -152,6 +152,7 @@ public class MessageAction {
 		newsService.updateNewsInfo(news);
 		return "success";
 	}
+	
 	public NewsService getNewsService() {
 		return newsService;
 	}

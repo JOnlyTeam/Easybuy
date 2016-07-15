@@ -17,15 +17,15 @@
 			<form action="updateNews.action">
 				<table class="form">
 					<tr hidden="hidden">
-						<td><input type="text" class="text" name="news.enId" value=${fillNews.enId} /></td>
+						<td><input type="text" class="text" name="news.enId" value="${fillNews.enId}" /></td>
 					</tr>
 					<tr>
 						<td class="field">新闻标题：</td>
-						<td><input type="text" class="text" name="news.enTitle" value=${fillNews.enTitle} /></td>
+						<td><input type="text" class="text" name="news.enTitle" value="${fillNews.enTitle}" /></td>
 					</tr>
 					<tr>
 						<td class="field">新闻内容：</td>
-						<td><textarea name="news.nContent" value=${fillNews.enContent}></textarea></td>
+						<td><textarea name="news.enContent" value="${fillNews.enContent}"></textarea></td>
 					</tr>
 					<tr>
 						<td></td>

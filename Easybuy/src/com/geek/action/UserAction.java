@@ -65,6 +65,14 @@ public class UserAction extends ActionSupport {
 	}
 	
 	/**
+	 * 注销用户
+	 */
+	public String logout(){
+		session = ServletActionContext.getRequest().getSession();
+		session.removeAttribute("currentUser");
+		return "success";
+	}
+	/**
 	 * 后台新增用户
 	 * @return
 	 */
@@ -75,11 +83,11 @@ public class UserAction extends ActionSupport {
 			user.setEuSex("女");
 		session = ServletActionContext.getRequest().getSession();
 		if(userService.isExisted(user.getEuUserName())){
-			session.setAttribute("error", "用户已存在!");
+			session.setAttribute("addUserError", "用户已存在!");
 			return "error";
 		}
 		else{
-			userService.motifyUser(user);
+			userService.getDao().attachDirty(user);
 			return "success";
 		}
 			

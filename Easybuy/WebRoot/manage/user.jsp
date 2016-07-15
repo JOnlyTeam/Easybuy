@@ -30,7 +30,7 @@
 						<td class="w2 c">${user.euSex}</td>
 						<td>${user.euEmail}</td>
 						<td class="w4 c">${user.euMobile}</td>
-						<td class="w1 c"><a href="makeUserFill.action?userId=${user.euUserId}">修改</a> <a href="javascript:Delete(${user.euUserId});">删除</a></td>
+						<td class="w1 c"><a href="makeUserFill.action?id=${user.euUserId}">修改</a> <a href="javascript:Delete(${user.euUserId});">删除</a></td>
 						</tr>
 				</c:forEach>
 				

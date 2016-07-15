@@ -60,10 +60,12 @@ public class NewsService extends CommonService {
 	public void updateNewsInfo(EasybuyNews news){
 		EasybuyNews result = dao.findById(news.getEnId());
 		result.setEnCreateTime(new Timestamp(new Date().getTime()));
-		System.out.println(result.getEnId());
-		System.out.println(result.getEnTitle());
-		System.out.println(result.getEnContent());
-		System.out.println(result.getEnCreateTime());
+		result.setEnContent(news.getEnContent());
+		result.setEnTitle(news.getEnTitle());
+		//System.out.println(result.getEnId());
+		//System.out.println(result.getEnTitle());
+		//System.out.println(result.getEnContent());
+		//System.out.println(result.getEnCreateTime());
 		dao.attachDirty(result);
 	}
 	public EasybuyNewsDAO getDao() {

@@ -25,7 +25,7 @@
 						<tr>
 						<td class="first w4 c">${cat.epcId}</td>
 						<td>${cat.epcName}</td>
-						<td class="w1 c"><a href="productClass-modify.jsp">修改</a> <a href="deleteProductClass.action?classId=${cat.epcId}">删除</a></td>
+						<td class="w1 c"><a href="editClass.action?classId=${cat.epcId}">修改</a> <a href="deleteProductClass.action?classId=${cat.epcId}">删除</a></td>
 						</tr>
 					</c:if>
 					<c:forEach var="icat" items="${proClass}">
@@ -33,7 +33,7 @@
 						<tr>
 						<td class="first w4 c">${icat.epcId}</td>
 						<td class="childClass">${icat.epcName}</td>
-						<td class="w1 c"><a href="productClass-modify.jsp">修改</a> <a href="deleteProductClass.action?classId=${icat.epcId}">删除</a></td>
+						<td class="w1 c"><a href="editClass.action?classId=${icat.epcId}">修改</a> <a href="deleteProductClass.action?classId=${icat.epcId}">删除</a></td>
 						</tr>
 						</c:if>
 					</c:forEach>

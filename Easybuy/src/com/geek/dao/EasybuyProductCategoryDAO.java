@@ -133,7 +133,9 @@ public class EasybuyProductCategoryDAO extends BaseHibernateDAO {
 	public void attachDirty(EasybuyProductCategory instance) {
 		log.debug("attaching dirty EasybuyProductCategory instance");
 		try {
-			getSession().saveOrUpdate(instance);
+			Session session = getSession();
+			session.saveOrUpdate(instance);
+			session.flush();
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);

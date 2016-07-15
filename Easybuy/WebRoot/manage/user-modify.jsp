@@ -25,15 +25,9 @@
 						<td><input type="text" class="text" name="user.euPassword" value="${fillUser.euPassword}" /></td>
 					</tr>
 					<tr>
-						<c:if test="${fillUser.euSex=='男'}">
-							<td class="field">性别：</td>
-							<td><input type="radio" name="user.euSex" value=1 checked="checked" />男 <input type="radio" name="user.euSex" value="2" />女</td>
-						</c:if>
-						<c:if test="${fillUser.euSex=='女'}">
-							<td class="field">性别：</td>
-							<td><input type="radio" name="user.euSex" value=1  />男 <input type="radio" name="user.euSex" value="2"  checked="checked" />女</td>
-						</c:if>
-						
+						<td class="field">性别：</td>
+						<td><input type="radio" name="user.euSex" value=1 />男 <input type="radio" name="user.euSex" value="2" />女</td>
+			
 					</tr>
 					<tr>
 						<td class="field">生日：</td>
@@ -42,7 +36,7 @@
 					</tr>
 					<tr>
 						<td class="field">手机号码：</td>
-						<td><input type="text" class="text" name="user.euMobile" value="{fillUser.euMobile}" /></td>
+						<td><input type="text" class="text" name="user.euMobile" value="${fillUser.euMobile}" /></td>
 					</tr>
 					<tr>
 						<td class="field">身份证号：</td>
@@ -57,14 +51,9 @@
 						<td><input type="text" class="text" name="user.euAddress" value="${fillUser.euAddress}" /></td>
 					</tr>
 					<tr>
-						<c:if test="${fillUser.euStatus==1}">
-							<td class="field">用户权限：</td>
-							<td><input type="radio" name="user.euStatus" value="1" checked="checked"/>普通会员 <input type="radio" name="user.euStatus" value="2" />管理员</td>
-						</c:if>
-						<c:if test="${fillUser.euStatus==2}">
-							<td class="field">用户权限：</td>
-							<td><input type="radio" name="user.euStatus" value="1" />普通会员 <input type="radio" name="user.euStatus" value="2" checked="checked"/>管理员</td>
-						</c:if>
+						
+						<td class="field">用户权限：</td>
+						<td><input type="radio" name="user.euStatus" value="1" />普通会员 <input type="radio" name="user.euStatus" value="2" />管理员</td>
 						
 					</tr>
 					<tr>

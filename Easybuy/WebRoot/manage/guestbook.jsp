@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,30 +22,29 @@
 					<th>状态</th>
 					<th>操作</th>
 				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td class="w1 c">张三丰</td>
-					<td>高老庄的货发了没？</td>
+				<c:forEach var="com" items="${commentPage}">
+					<tr>
+					<td class="first w4 c">${com.ecId}</td>
+					<td class="w1 c">${com.ecNickName}</td>
+					<td>${com.ecContent}</td>
 					<td class="w1 c">已回复</td>
 					<td class="w1 c"><a href="guestbook-modify.jsp">回复</a> <a href="javascript:Delete(1);">删除</a></td>
-				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td class="w1 c">张三丰</td>
-					<td>高老庄的货发了没？</td>
-					<td class="w1 c">已回复</td>
-					<td class="w1 c"><a href="guestbook-modify.jsp">回复</a> <a href="javascript:Delete(1);">删除</a></td>
-				</tr>
+					</tr>
+				</c:forEach>
 			</table>
 			<div class="pager">
 				<ul class="clearfix">
-					<li><a href="#">上一页</a></li>
-					<li class="current">1</li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">下一页</a></li>
+					<c:if test="${pageInfo.currentPage>1}">
+						<li><a href="commentListByPage.action?page=${pageInfo.currentPage-1}">上一页</a></li>
+					</c:if>
+					<li class="current"><a href="loadCommentList.action?page=1">1</a></li>
+					<li><a href="loadCommentList.action?page=2">2</a></li>
+					<li><a href="loadCommentList.action?page=3">3</a></li>
+					<li><a href="loadCommentList.action?page=4">4</a></li>
+					<li><a href="loadCommentList.action?page=5">5</a></li>
+					<c:if test="${pageInfo.currentPage<pageInfo.totalPage}">
+						<li><a href="loadCommentList.action?page=${pageInfo.currentPage+1}">下一页</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>
